@@ -4,25 +4,28 @@ import { useRef } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { ArrowDown } from "lucide-react"
-import { useRouter } from "next/navigation" // Import useRouter
-import { Button } from "@/components/ui/button" // Import your Button component
+import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button"
 
 export default function HeroNEW() {
   const scrollRef = useRef<HTMLDivElement>(null)
-  const router = useRouter() // Initialize the router
+  const router = useRouter()
 
-  const navigateToContact = () => {
-    router.push("/contact") // Navigate to the contact page
+  const navigateToAbout = () => {
+    router.push("/about")
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-0">
-      {/* Background image with adjusted position */}
+    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-16 md:pt-0 z-20">
+      {/* Background image with custom alignment */}
       <Image 
         src="/images/RegisFuji.jpg"
         alt="Hero Background"
         fill
-        className="object-cover scale-100" // Adjusts to show the top part
+        className="object-cover"
+        style={{
+          objectPosition: 'center 41%'
+        }}
         priority
       />
       
@@ -36,7 +39,7 @@ export default function HeroNEW() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="text-2xl md:text-4xl font-raleway font-bold text-primary ">Hey There!</span>
+              <span className="text-2xl md:text-4xl font-raleway font-bold text-primary">Hey There!</span>
             </motion.div>
             
             <motion.h1 
@@ -54,7 +57,8 @@ export default function HeroNEW() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              I create, design, program, and develop games.
+              I create, design, program, and play games. Click to 
+              learn more about me, otherwise, scroll down!
             </motion.p>
             
             <motion.div
@@ -64,19 +68,20 @@ export default function HeroNEW() {
               className="flex justify-center md:justify-start"
             >
               <Button 
-                onClick={navigateToContact} // Use the Button component
-                variant="default" // Use the default variant (or any other variant you prefer)
-                size="lg" // Use the large size (or any other size you prefer)
-                className="text-lg md:text-2xl font-lato font-bold flex items-center gap-2" // Add custom styles
+                onClick={navigateToAbout}
+                variant="default"
+                size="lg"
+                className="text-lg md:text-2xl font-lato font-bold flex items-center gap-2"
               >
-                Contact Me
+                About Me
               </Button>
             </motion.div>
           </div>
         </div>
       </div>
       
-      <div ref={scrollRef} className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      {/* Adjusted arrow position with proper centering */}
+      <div ref={scrollRef} className="absolute bottom-1 left-[calc(50%-1.5rem)] transform animate-bounce">
         <ArrowDown 
           className="h-8 w-8 text-primary"
           strokeWidth={3}

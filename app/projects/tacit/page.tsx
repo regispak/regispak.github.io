@@ -1,220 +1,328 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { useSearchParams } from "next/navigation"
+import { useState } from "react"
 import Image from "next/image"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { motion } from "framer-motion"
+import { Play } from "lucide-react"
 import Navbar from "@/components/navbar"
 
-// Sample project data (in a real app, this would come from a database or API)
-const projects = [
-  {
-    id: 1,
-    title: "E-commerce Platform",
-    description:
-      "A modern e-commerce platform built with Next.js, featuring product listings, cart functionality, and secure checkout.",
-    fullDescription: `
-      This e-commerce platform was built to provide a seamless shopping experience for users. 
-      
-      Key features include:
-      - Responsive product listings with filtering and sorting
-      - Shopping cart with persistent storage
-      - Secure checkout process with Stripe integration
-      - User accounts and order history
-      - Admin dashboard for product management
-      
-      The application was built using Next.js for server-side rendering and optimal performance. 
-      TypeScript was used throughout to ensure type safety and improve developer experience.
-      Tailwind CSS provided a utility-first approach to styling, making the UI development process efficient and consistent.
-      Stripe integration handles all payment processing securely.
-    `,
-    image: "/placeholder.svg?height=600&width=800",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
-    slug: "ecommerce-platform",
-    demoUrl: "#",
-    githubUrl: "#",
-    year: "2023",
-  },
-  {
-    id: 2,
-    title: "Task Management App",
-    description:
-      "A productivity app for managing tasks and projects with drag-and-drop functionality and real-time updates.",
-    fullDescription: `
-      This task management application helps users organize their work and increase productivity.
-      
-      Key features include:
-      - Kanban board with drag-and-drop functionality
-      - Task creation, editing, and deletion
-      - Project organization and categorization
-      - Real-time updates using Firebase
-      - Collaborative features for team projects
-      
-      The application was built using React for the frontend UI components.
-      Firebase provides real-time database functionality and authentication.
-      Framer Motion powers the smooth animations and transitions.
-      The drag-and-drop functionality makes task management intuitive and efficient.
-    `,
-    image: "/placeholder.svg?height=600&width=800",
-    tags: ["React", "Firebase", "Tailwind CSS", "Framer Motion"],
-    slug: "task-management-app",
-    demoUrl: "#",
-    githubUrl: "#",
-    year: "2022",
-  },
-  {
-    id: 3,
-    title: "Portfolio Website",
-    description: "A responsive portfolio website showcasing projects and skills with a modern, minimalist design.",
-    fullDescription: `
-      This portfolio website was designed to showcase my work and skills in a clean, modern format.
-      
-      Key features include:
-      - Responsive design that works on all devices
-      - Project showcase with detailed project pages
-      - Contact form for easy communication
-      - Smooth animations and transitions
-      - Fast loading times and optimal performance
-      
-      The website was built using Next.js for static site generation.
-      TypeScript ensures type safety throughout the codebase.
-      Tailwind CSS provides utility-first styling for consistent design.
-      Framer Motion powers the smooth animations and transitions.
-    `,
-    image: "/placeholder.svg?height=600&width=800",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    slug: "portfolio-website",
-    demoUrl: "#",
-    githubUrl: "#",
-    year: "2023",
-  },
-]
+export default function Tacit() {
+  const [selectedThumbnail, setSelectedThumbnail] = useState(0)
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
 
-export default function ProjectPage() {
-  const searchParams = useSearchParams()
-  const [project, setProject] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    // Get the project slug from the URL query parameter
-    const projectSlug = searchParams.get("project")
-
-    if (projectSlug) {
-      // Find the project with the matching slug
-      const foundProject = projects.find((p) => p.slug === projectSlug)
-      setProject(foundProject || null)
-    }
-
-    setLoading(false)
-  }, [searchParams])
-
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-background">
-        <Navbar />
-        <div className="container mx-auto px-4 py-24 md:py-32">
-          <div className="flex items-center justify-center h-[50vh]">
-            <p>Loading...</p>
-          </div>
-        </div>
-      </main>
-    )
-  }
-
-  if (!project) {
-    return (
-      <main className="min-h-screen bg-background">
-        <Navbar />
-        <div className="container mx-auto px-4 py-24 md:py-32">
-          <div className="flex flex-col items-center justify-center h-[50vh]">
-            <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
-            <p className="text-muted-foreground mb-6">
-              The project you're looking for doesn't exist or has been removed.
-            </p>
-            <Link
-              href="/#projects"
-              className="inline-flex items-center text-primary hover:text-primary/80 transition-colors"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Projects
-            </Link>
-          </div>
-        </div>
-      </main>
-    )
-  }
+  // Gallery thumbnails
+  const thumbnails = [
+    "/images/DB.png",
+    "/images/RegisFuji.jpg",
+    "/images/DB.png",
+    "/images/RegisFuji.jpg",
+    "/images/DB.png",
+    "/images/RegisFuji.jpg",
+  ]
 
   return (
-    <main className="min-h-screen bg-background">
-      <Navbar />
-      <div className="container mx-auto px-4 py-24 md:py-32">
-        <Link
-          href="/#projects"
-          className="inline-flex items-center text-primary hover:text-primary/80 transition-colors mb-8"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" /> Back to Projects
-        </Link>
+    <div className="relative min-h-screen w-full overflow-hidden">
+      {/* Full-screen background image */}
+      <div className="fixed inset-0 z-0">
+        <Image
+          src="/images/DB.png"
+          alt="Hirika Village Background"
+          fill
+          className="object-cover brightness-[0.4]"
+          priority
+        />
+      </div>
 
-        <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{project.title}</h1>
+      {/* Content container */}
+      <div className="relative z-10 min-h-screen flex flex-col">
+        {/* Header/Navigation */}
+        <header className="w-full py-4 px-6">
+          <Navbar />
+        </header>
 
-          <div className="flex flex-wrap gap-2 mb-8">
-            {project.tags.map((tag: string) => (
-              <span key={tag} className="bg-secondary px-3 py-1 rounded-md text-sm font-medium">
-                {tag}
-              </span>
-            ))}
-            <span className="bg-muted px-3 py-1 rounded-md text-sm font-medium ml-auto">{project.year}</span>
-          </div>
+        {/* Main content area */}
+        <main className="flex-1 flex flex-col items-center px-4">
+          {/* Hero section */}
+          <section className="w-full flex flex-col items-center justify-center text-center py-16">
+            {/* Hero title */}
+            <motion.h1
+              className="text-5xl md:text-7xl lg:text-8xl font-bold text-[#8FBCBB] mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              TACIT
+            </motion.h1>
 
-          <div className="relative w-full h-[300px] md:h-[500px] rounded-lg overflow-hidden mb-8">
-            <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
-          </div>
+            {/* Description */}
+            <motion.div
+              className="max-w-3xl mx-auto text-white/90 text-lg mb-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              <p>
+                Tacit is a <span className="font-semibold">4 player PVP game</span> designed to fit the setting for
+                Zelda BOTW where the player will experience combat, puzzle and exploration in a{" "}
+                <span className="font-semibold">non-linear</span> gameplay setup.
+              </p>
+            </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="md:col-span-2">
-              <h2 className="text-2xl font-semibold mb-4">Overview</h2>
-              <p className="text-muted-foreground mb-4">{project.description}</p>
+            {/* Video player */}
+            <motion.div
+              className="w-full max-w-4xl aspect-video relative mb-8 rounded-lg overflow-hidden"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              {!isVideoPlaying ? (
+                <div
+                  className="absolute inset-0 bg-black/50 flex items-center justify-center cursor-pointer"
+                  onClick={() => setIsVideoPlaying(true)}
+                >
+                  <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
+                    <Play className="w-8 h-8 text-white fill-white" />
+                  </div>
+                </div>
+              ) : null}
+              <iframe
+                src={
+                  isVideoPlaying
+                    ? "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                    : "https://www.youtube.com/embed/dQw4w9WgXcQ"
+                }
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </motion.div>
 
-              <div className="mt-8 space-y-4 whitespace-pre-line text-muted-foreground">{project.fullDescription}</div>
+            {/* Thumbnails gallery */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            >
+              {thumbnails.map((thumbnail, index) => (
+                <div
+                  key={index}
+                  className={`relative w-24 h-24 md:w-32 md:h-32 cursor-pointer transition-all duration-300 ${
+                    selectedThumbnail === index ? "ring-2 ring-[#8FBCBB]" : "opacity-70 hover:opacity-100"
+                  }`}
+                  onClick={() => setSelectedThumbnail(index)}
+                >
+                  <Image
+                    src={thumbnail || "/placeholder.svg"}
+                    alt={`Thumbnail ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </motion.div>
+          </section>
+
+          {/* Project info section */}
+          <section className="w-full py-8 px-4 bg-[#1E2E2E]/80">
+            <div className="max-w-6xl mx-auto flex flex-wrap justify-between text-white/80">
+              <div className="w-full md:w-auto mb-4 md:mb-0">
+                <h3 className="text-[#8FBCBB] text-lg font-medium mb-2">ROLE:</h3>
+                <p>Level Designer</p>
+              </div>
+              <div className="w-full md:w-auto mb-4 md:mb-0">
+                <h3 className="text-[#8FBCBB] text-lg font-medium mb-2">TEAM SIZE:</h3>
+                <p>Solo Project</p>
+              </div>
+              <div className="w-full md:w-auto mb-4 md:mb-0">
+                <h3 className="text-[#8FBCBB] text-lg font-medium mb-2">TOOLS USED:</h3>
+                <p>Unreal Engine 4</p>
+              </div>
+              <div className="w-full md:w-auto mb-4 md:mb-0">
+                <h3 className="text-[#8FBCBB] text-lg font-medium mb-2">DURATION:</h3>
+                <p>3 Weeks</p>
+              </div>
+              <div className="w-full md:w-auto">
+                <h3 className="text-[#8FBCBB] text-lg font-medium mb-2">GENRE:</h3>
+                <p>Open-world Action Adventure</p>
+              </div>
             </div>
+          </section>
 
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Project Links</h3>
-                <div className="space-y-2">
-                  <a
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-primary hover:text-primary/80 transition-colors"
-                  >
-                    Live Demo
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-primary hover:text-primary/80 transition-colors"
-                  >
-                    GitHub Repository
-                  </a>
+          {/* Design Process Section */}
+          <section className="w-full py-16 bg-[#0D1518]/90">
+            <div className="max-w-6xl mx-auto px-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#8FBCBB] text-center mb-12">DESIGN PROCESS</h2>
+
+              {/* Pre-Production */}
+              <div className="flex flex-col md:flex-row gap-8 mb-16">
+                <div className="w-full md:w-1/2">
+                  <Image
+                    src="/images/DB.png"
+                    alt="Pre-Production Concept"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover rounded-md"
+                  />
+                </div>
+                <div className="w-full md:w-1/2 text-white">
+                  <h3 className="text-xl font-semibold text-[#8FBCBB] mb-4">Pre-Production</h3>
+                  <ul className="space-y-4 list-disc pl-5">
+                    <li>
+                      I began my process by studying Zelda's environmental design and decided to create a village based
+                      on the plains.
+                    </li>
+                    <li>
+                      Key design principles:
+                      <ul className="pl-5 mt-2 space-y-2">
+                        <li>Village should be positioned on fairly flat ground</li>
+                        <li>While the landscape around it can vary in height</li>
+                      </ul>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-xl font-semibold mb-3">Technologies</h3>
-                <ul className="space-y-1 text-muted-foreground">
-                  {project.tags.map((tag: string) => (
-                    <li key={tag}>{tag}</li>
-                  ))}
-                </ul>
+              {/* Initial Floor Plan */}
+              <div className="flex flex-col md:flex-row gap-8 mb-16">
+                <div className="w-full md:w-1/2">
+                  <Image
+                    src="/images/RegisFuji.jpg"
+                    alt="Initial Floor Plan"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover rounded-md"
+                  />
+                </div>
+                <div className="w-full md:w-1/2 text-white">
+                  <h3 className="text-xl font-semibold text-[#8FBCBB] mb-4">Initial Floor Plan</h3>
+                  <ul className="space-y-4 list-disc pl-5">
+                    <li>
+                      I thought it would be a good idea to combine the combat and puzzle mechanics Zelda has to bring an
+                      immersive and fitting experience to the player.
+                    </li>
+                    <li>
+                      The floor plan was designed to highlight each of the different zone setups which also showcase the
+                      flow and the goals of the level.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Level Goal */}
+              <div className="flex flex-col md:flex-row gap-8">
+                <div className="w-full md:w-1/2">
+                  <Image
+                    src="/images/DB.png"
+                    alt="Level Goal Map"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover rounded-md"
+                  />
+                </div>
+                <div className="w-full md:w-1/2 text-white">
+                  <h3 className="text-xl font-semibold text-[#8FBCBB] mb-4">Level Goal</h3>
+                  <ul className="space-y-4 list-disc pl-5">
+                    <li>
+                      The goal of the level is to save Hirika, the player will find her captured next to the mountain.
+                    </li>
+                    <li>
+                      The mechanic setup will encourage the player to explore combat, puzzle, and narrative encounters
+                      around the objective.
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </section>
+
+          {/* Design Choices Section */}
+          <section className="w-full py-16">
+            <div className="max-w-6xl mx-auto px-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#8FBCBB] text-center mb-12">DESIGN CHOICES</h2>
+
+              {/* Clear Landmarks */}
+              <div className="mb-16">
+                <h3 className="text-2xl font-bold text-white mb-8 uppercase">CLEAR LANDMARKS</h3>
+                <div className="flex flex-col md:flex-row gap-8 mb-8">
+                  <div className="w-full md:w-1/2 text-white">
+                    <ul className="space-y-4 list-disc pl-5">
+                      <li>The level should provide the player with a clear sense of direction and location.</li>
+                      <li>
+                        I made sure to create clear landmarks and visible pathways to help the players easily navigate
+                        and understand their surroundings within the open field.
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="w-full md:w-1/2">
+                    <Image
+                      src="/images/DB.png"
+                      alt="Clear Landmarks Screenshot"
+                      width={600}
+                      height={400}
+                      className="w-full h-auto object-cover rounded-md"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row gap-8">
+                  <div className="w-full md:w-1/2">
+                    <Image
+                      src="/images/RegisFuji.jpg"
+                      alt="Shrine Screenshot"
+                      width={600}
+                      height={400}
+                      className="w-full h-auto object-cover rounded-md"
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 text-white">
+                    <ul className="space-y-4 list-disc pl-5">
+                      <li>
+                        The shrine is a well-known landmark in the Zelda game series. I incorporated similar structures
+                        that would be instantly recognized for players.
+                      </li>
+                      <li>
+                        The tall Fire Shrine serves as the first waypoint point; the shrine's location is easily
+                        accessible.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Combat Setups */}
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-8 uppercase">COMBAT SETUPS</h3>
+                <div className="flex flex-col md:flex-row gap-8">
+                  <div className="w-full md:w-1/2 text-white">
+                    <ul className="space-y-4 list-disc pl-5">
+                      <li>
+                        To create a rich and exploration-focused style experience, combat encounters are strategically
+                        placed throughout the level.
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="w-full md:w-1/2">
+                    <Image
+                      src="/images/DB.png"
+                      alt="Combat Setup Screenshot"
+                      width={600}
+                      height={400}
+                      className="w-full h-auto object-cover rounded-md"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        {/* Footer */}
+        <footer className="w-full py-6 bg-[#1E2E2E] text-center text-white/60 text-sm">
+          <p>© 2025 Regis Pak. All rights reserved.</p>
+        </footer>
       </div>
-    </main>
+    </div>
   )
 }
 
