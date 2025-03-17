@@ -1,150 +1,103 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { Play } from "lucide-react"
-import Navbar from "@/components/navbar"
+import { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
+import Navbar from "@/components/navbar";
+import { useRouter } from "next/navigation";
+import FloatingShapes from "@/components/ui/floatingshapes"; // Import the FloatingShapes component
 
 export default function Tacit() {
-  const [selectedThumbnail, setSelectedThumbnail] = useState(0)
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const router = useRouter();
 
-  // Gallery thumbnails
-  const thumbnails = [
-    "/images/DB.png",
-    "/images/RegisFuji.jpg",
-    "/images/DB.png",
-    "/images/RegisFuji.jpg",
-    "/images/DB.png",
-    "/images/RegisFuji.jpg",
-  ]
+  const handleBackToProjects = () => {
+    router.push("/projects");
+  };
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
-      {/* Full-screen background image */}
-      <div className="fixed inset-0 z-0">
-        <Image
-          src="/images/DB.png"
-          alt="Hirika Village Background"
-          fill
-          className="object-cover brightness-[0.4]"
-          priority
-        />
+    <div className="relative min-h-screen w-full overflow-hidden bg-background">
+      {/* Floating shapes background */}
+      <div className="absolute inset-0 z-0">
+        <FloatingShapes count={15} />
       </div>
 
       {/* Content container */}
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Header/Navigation */}
-        <header className="w-full py-4 px-6">
+        <header className="w-full py-6 px-6">
           <Navbar />
         </header>
 
         {/* Main content area */}
-        <main className="flex-1 flex flex-col items-center px-4">
+        <main className="flex-1 flex flex-col items-center px-4 relative">
           {/* Hero section */}
-          <section className="w-full flex flex-col items-center justify-center text-center py-16">
-            {/* Hero title */}
-            <motion.h1
-              className="text-5xl md:text-7xl lg:text-8xl font-bold text-[#8FBCBB] mb-6"
+          <section className="w-full flex flex-col items-center text-center py-12">
+            {/* Back to Projects & Title Section */}
+            <motion.div
+              className="w-full max-w-6xl px-4 flex items-center justify-center mb-8 relative"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              TACIT
-            </motion.h1>
+              {/* Back to Projects Button - Left Aligned */}
+              <button
+                onClick={handleBackToProjects}
+                className="absolute left-0 flex items-center text-white text-lg font-raleway font-bold hover:text-primary transition-colors"
+              >
+                <ArrowLeft className="w-6 h-6 mr-2" />
+                Back to Projects
+              </button>
 
-            {/* Description */}
-            <motion.div
-              className="max-w-3xl mx-auto text-white/90 text-lg mb-12"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              <p>
-                Tacit is a <span className="font-semibold">4 player PVP game</span> designed to fit the setting for
-                Zelda BOTW where the player will experience combat, puzzle and exploration in a{" "}
-                <span className="font-semibold">non-linear</span> gameplay setup.
-              </p>
+              {/* Hero Title - Centered */}
+              <motion.h1
+                className="text-5xl md:text-7xl lg:text-8xl font-lato font-bold text-primary"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                TACIT
+              </motion.h1>
             </motion.div>
 
-            {/* Video player */}
+            {/* Image Section */}
             <motion.div
-              className="w-full max-w-4xl aspect-video relative mb-8 rounded-lg overflow-hidden"
+              className="w-full max-w-3xl aspect-video relative mb-4 rounded-lg overflow-hidden"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              {!isVideoPlaying ? (
-                <div
-                  className="absolute inset-0 bg-black/50 flex items-center justify-center cursor-pointer"
-                  onClick={() => setIsVideoPlaying(true)}
-                >
-                  <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
-                    <Play className="w-8 h-8 text-white fill-white" />
-                  </div>
-                </div>
-              ) : null}
-              <iframe
-                src={
-                  isVideoPlaying
-                    ? "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                    : "https://www.youtube.com/embed/dQw4w9WgXcQ"
-                }
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+              <Image
+                src="/images/TacitBackground.png"
+                alt="Tacit Project Image"
+                fill
+                className="object-cover"
               />
-            </motion.div>
-
-            {/* Thumbnails gallery */}
-            <motion.div
-              className="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-            >
-              {thumbnails.map((thumbnail, index) => (
-                <div
-                  key={index}
-                  className={`relative w-24 h-24 md:w-32 md:h-32 cursor-pointer transition-all duration-300 ${
-                    selectedThumbnail === index ? "ring-2 ring-[#8FBCBB]" : "opacity-70 hover:opacity-100"
-                  }`}
-                  onClick={() => setSelectedThumbnail(index)}
-                >
-                  <Image
-                    src={thumbnail || "/placeholder.svg"}
-                    alt={`Thumbnail ${index + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              ))}
             </motion.div>
           </section>
 
-          {/* Project info section */}
-          <section className="w-full py-8 px-4 bg-[#1E2E2E]/80">
-            <div className="max-w-6xl mx-auto flex flex-wrap justify-between text-white/80">
-              <div className="w-full md:w-auto mb-4 md:mb-0">
-                <h3 className="text-[#8FBCBB] text-lg font-medium mb-2">ROLE:</h3>
-                <p>Level Designer</p>
-              </div>
-              <div className="w-full md:w-auto mb-4 md:mb-0">
-                <h3 className="text-[#8FBCBB] text-lg font-medium mb-2">TEAM SIZE:</h3>
-                <p>Solo Project</p>
-              </div>
-              <div className="w-full md:w-auto mb-4 md:mb-0">
-                <h3 className="text-[#8FBCBB] text-lg font-medium mb-2">TOOLS USED:</h3>
-                <p>Unreal Engine 4</p>
-              </div>
-              <div className="w-full md:w-auto mb-4 md:mb-0">
-                <h3 className="text-[#8FBCBB] text-lg font-medium mb-2">DURATION:</h3>
-                <p>3 Weeks</p>
+          {/* Project info section - Below the image */}
+          <section className="w-full py-6 bg-[#1E2E2E]/80">
+            <div className="max-w-6xl mx-auto flex flex-wrap justify-between text-white/80 gap-4">
+              <div className="w-full md:w-auto">
+                <h3 className="text-[#8FBCBB] text-lg font-medium mb-1">ROLE:</h3>
+                <p>Project Lead</p>
               </div>
               <div className="w-full md:w-auto">
-                <h3 className="text-[#8FBCBB] text-lg font-medium mb-2">GENRE:</h3>
-                <p>Open-world Action Adventure</p>
+                <h3 className="text-[#8FBCBB] text-lg font-medium mb-1">TEAM SIZE:</h3>
+                <p>12 Students</p>
+              </div>
+              <div className="w-full md:w-auto">
+                <h3 className="text-[#8FBCBB] text-lg font-medium mb-1">TOOLS USED:</h3>
+                <p>Unreal Engine 5</p>
+              </div>
+              <div className="w-full md:w-auto">
+                <h3 className="text-[#8FBCBB] text-lg font-medium mb-1">DURATION:</h3>
+                <p>10 Weeks</p>
+              </div>
+              <div className="w-full md:w-auto">
+                <h3 className="text-[#8FBCBB] text-lg font-medium mb-1">GENRE:</h3>
+                <p>Multiplayer party PVP</p>
               </div>
             </div>
           </section>
@@ -152,13 +105,13 @@ export default function Tacit() {
           {/* Design Process Section */}
           <section className="w-full py-16 bg-[#0D1518]/90">
             <div className="max-w-6xl mx-auto px-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#8FBCBB] text-center mb-12">DESIGN PROCESS</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#8FBCBB] text-center mb-12">Where to Start?</h2>
 
               {/* Pre-Production */}
               <div className="flex flex-col md:flex-row gap-8 mb-16">
                 <div className="w-full md:w-1/2">
                   <Image
-                    src="/images/DB.png"
+                    src="/images/tacit/requirements2.png"
                     alt="Pre-Production Concept"
                     width={600}
                     height={400}
@@ -166,19 +119,19 @@ export default function Tacit() {
                   />
                 </div>
                 <div className="w-full md:w-1/2 text-white">
-                  <h3 className="text-xl font-semibold text-[#8FBCBB] mb-4">Pre-Production</h3>
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Pre-Production</h3>
                   <ul className="space-y-4 list-disc pl-5">
-                    <li>
-                      I began my process by studying Zelda's environmental design and decided to create a village based
-                      on the plains.
-                    </li>
-                    <li>
-                      Key design principles:
-                      <ul className="pl-5 mt-2 space-y-2">
-                        <li>Village should be positioned on fairly flat ground</li>
-                        <li>While the landscape around it can vary in height</li>
-                      </ul>
-                    </li>
+                    <p>&emsp;
+                      Since this project is for UCSC's game design capstone course, we want to make something
+                      interesting, something fun, but mainly something that I can put right here on my website.
+                      Not only is it what you want to make, but what your professors NEED you to make, in the form
+                      of requirements.
+                    </p>
+                    <p>&emsp;
+                      So, there's a special balance with just that right sweespot in trying to find a game idea
+                      that will not only work, be fun, be impressive, but also pass the class, cause you can't 
+                      leave college without that diploma
+                    </p>
                   </ul>
                 </div>
               </div>
@@ -187,7 +140,7 @@ export default function Tacit() {
               <div className="flex flex-col md:flex-row gap-8 mb-16">
                 <div className="w-full md:w-1/2">
                   <Image
-                    src="/images/RegisFuji.jpg"
+                    src="/images/tacit/requirements.png"
                     alt="Initial Floor Plan"
                     width={600}
                     height={400}
@@ -195,41 +148,30 @@ export default function Tacit() {
                   />
                 </div>
                 <div className="w-full md:w-1/2 text-white">
-                  <h3 className="text-xl font-semibold text-[#8FBCBB] mb-4">Initial Floor Plan</h3>
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">So What Do We Do?</h3>
                   <ul className="space-y-4 list-disc pl-5">
+                    <p>&emsp;
+                      So obviously, you and your friends just spit out random ideas till something sticks. Eventually,
+                      something does. Given these points, can you guess it?
+                    </p>
                     <li>
-                      I thought it would be a good idea to combine the combat and puzzle mechanics Zelda has to bring an
-                      immersive and fitting experience to the player.
+                      Relatively fast game cycle, No longer than 15 minutes
                     </li>
                     <li>
-                      The floor plan was designed to highlight each of the different zone setups which also showcase the
-                      flow and the goals of the level.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Level Goal */}
-              <div className="flex flex-col md:flex-row gap-8">
-                <div className="w-full md:w-1/2">
-                  <Image
-                    src="/images/DB.png"
-                    alt="Level Goal Map"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto object-cover rounded-md"
-                  />
-                </div>
-                <div className="w-full md:w-1/2 text-white">
-                  <h3 className="text-xl font-semibold text-[#8FBCBB] mb-4">Level Goal</h3>
-                  <ul className="space-y-4 list-disc pl-5">
-                    <li>
-                      The goal of the level is to save Hirika, the player will find her captured next to the mountain.
+                      Simplistic concept that can be iterated on
                     </li>
                     <li>
-                      The mechanic setup will encourage the player to explore combat, puzzle, and narrative encounters
-                      around the objective.
+                      Mirrors some of the important aspects of AAA games
                     </li>
+                    <li>
+                      So what do we do?
+                    </li>
+                    <p>
+                    &emsp;
+                    </p>
+                    <p>4
+                      Some sort of multiplayer party game,  duh :P
+                    </p>
                   </ul>
                 </div>
               </div>
@@ -323,6 +265,5 @@ export default function Tacit() {
         </footer>
       </div>
     </div>
-  )
+  );
 }
-

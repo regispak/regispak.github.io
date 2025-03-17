@@ -16,7 +16,7 @@ export default function HeroNEW() {
   }
 
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-16 md:pt-0 z-20">
+    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-24 md:pt-32 z-20">
       {/* Background image with custom alignment */}
       <Image 
         src="/images/RegisFuji.jpg"
@@ -33,13 +33,15 @@ export default function HeroNEW() {
       <div className="container mx-auto px-4 z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left column - text content */}
-          <div className="space-y-6 text-center md:text-left">
+          <div className="space-y-8 text-center md:text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="text-2xl md:text-4xl font-raleway font-bold text-primary">Hey There!</span>
+              <span className="text-2xl md:text-4xl font-raleway font-bold text-primary block pt-6 md:pt-8">
+                Hey There!
+              </span>
             </motion.div>
             
             <motion.h1 
@@ -57,8 +59,7 @@ export default function HeroNEW() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              I create, design, program, and play games. Click to 
-              learn more about me, otherwise, scroll down!
+              I create, design, program, and play games.
             </motion.p>
             
             <motion.div

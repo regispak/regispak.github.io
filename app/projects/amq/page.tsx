@@ -7,7 +7,7 @@ import { Play, ArrowLeft } from "lucide-react"
 import Navbar from "@/components/navbar"
 import { useRouter } from "next/navigation"
 
-export default function CMPM123() {
+export default function AMQ() {
   const [selectedThumbnail, setSelectedThumbnail] = useState(0)
   const [isVideoPlaying, setIsVideoPlaying] = useState(false)
   const router = useRouter()

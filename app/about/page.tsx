@@ -63,9 +63,41 @@ export default function AboutPage() {
                         <div className="text-primary text-2xl font-bold">21</div>
                       </div>
                     </div>
-                    <div className="mt-4 text-muted-foreground">
-                      <p>Programmer, Game Designer, and 100% ready to go</p>
-                    </div>
+                    <div className="mt-4 text-muted-foreground flex items-center gap-2">
+                        <p className="flex items-center gap-2">
+                            <a
+                            href="https://www.linkedin.com/in/regis-pak"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-primary hover:underline"
+                            >
+                            <Image
+                                src="/images/IN.png" // Path to your LinkedIn logo
+                                alt="LinkedIn"
+                                width={16} // Adjust size as needed
+                                height={16}
+                                className="inline-block" // Ensures it aligns with text
+                            />
+                            LinkedIn
+                            </a>
+                            <span className="text-muted-foreground">|</span>
+                            <a
+                            href="https://github.com/soggytofu"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-primary hover:underline"
+                            >
+                            <Image
+                                src="/images/GIT.png" // Path to your GitHub logo
+                                alt="GitHub"
+                                width={22} // Adjust size as needed
+                                height={22}
+                                className="inline-block transform scale-150" // Ensures it aligns with text
+                            />
+                            GitHub
+                            </a>
+                        </p>
+                        </div>
                   </div>
                 </div>
               </div>

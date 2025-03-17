@@ -44,7 +44,7 @@ const sideProjects = [
     description: "A simple program to scrape MAL for any anime season to retreive every single anime opening and ending",
     image: "/images/AMQ.png",
     tags: ["Python", "HTML"],
-    slug: "chatbot",
+    slug: "",
   },
 ]
 
@@ -85,13 +85,13 @@ export default function ProjectsPage() {
                   <h3 className="text-2xl font-semibold mb-4 px-6 pt-6">{project.title}</h3>
 
                   {/* Project Image */}
-                  <Link href={`/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                    <div className="relative w-full aspect-video overflow-hidden"> {/* Use aspect-video for 16:9 ratio */}
+                  <Link href={`/projects/${project.slug}`}>
+                    <div className="relative w-full aspect-video overflow-hidden">
                       <Image
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
                         fill
-                        className="object-cover transition-all duration-200" // Use object-cover to fill the container
+                        className="object-cover transition-all duration-200"
                       />
                       <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center justify-center">
                         <span className="text-white text-lg font-medium">View Project</span>
@@ -146,15 +146,14 @@ export default function ProjectsPage() {
                   {/* Project Title Above Image */}
                   <h3 className="text-2xl font-semibold mb-4 px-6 pt-6">{project.title}</h3>
 
-                  {/* Project Image */}
-                  <Link href={`/projects/${project.title.toLowerCase().replace(/\s+/g, '-')}`}>
+                  <Link href={`/projects/${project.slug}`}>
                     <div className="relative w-full max-w-full aspect-w-16 aspect-h-9 overflow-hidden">
                       <Image
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
-                        width={800} // Explicit width for the image
-                        height={450} // Explicit height to maintain 16:9 ratio
-                        objectFit="contain" // Ensuring the image fits within the container
+                        width={800}
+                        height={450}
+                        objectFit="contain"
                         className="transition-all duration-200"
                       />
                       <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center justify-center">
