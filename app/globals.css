@@ -1,60 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* 
+  CSS Variables for theming
+  These control the color scheme of the entire site
+  Format is HSL: hue (0-360), saturation (0-100%), lightness (0-100%)
+*/
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    --background: 240 10% 3.9%;
+    /* Main background color - dark green (green-900) */
+    --background: 147 64% 10%;
+    /* Text color on background */
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    
+    /* Card/component background - slightly lighter than main background */
+    --card: 147 64% 12%;
+    /* Text color on cards */
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    
+    /* Popover/dropdown background */
+    --popover: 147 64% 12%;
+    /* Text color on popovers */
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
+    
+    /* Primary accent color - bright green */
+    --primary: 142 76% 36%;
+    /* Text color on primary backgrounds */
+    --primary-foreground: 0 0% 98%;
+    
+    /* Secondary color - slightly lighter than background */
+    --secondary: 147 48% 16%;
+    /* Text color on secondary backgrounds */
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
+    
+    /* Muted/subtle background color */
+    --muted: 147 48% 14%;
+    /* Text color for less important text */
+    --muted-foreground: 0 0% 70%;
+    
+    /* Accent color - darker green */
+    --accent: 142 70% 20%;
+    /* Text color on accent backgrounds */
     --accent-foreground: 0 0% 98%;
+    
+    /* Destructive/error color - red */
     --destructive: 0 62.8% 30.6%;
+    /* Text color on destructive backgrounds */
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    
+    /* Border color */
+    --border: 147 48% 16%;
+    /* Input field border color */
+    --input: 147 48% 16%;
+    /* Focus ring color */
+    --ring: 142 76% 36%;
+    /* Border radius for rounded corners */
+    --radius: 0.5rem;
   }
 }
 
+/* 
+  Base styles applied to all elements 
+*/
 @layer base {
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Lato', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
   }
 }
 
+@keyframes gradient-x {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 10s ease infinite;
+}
+
+/* 
+  How to adjust the green color:
+  
+  1. To make the background darker:
+     - Decrease the lightness value in --background (currently 10%)
+     - Example for darker: --background: 147 64% 8%;
+  
+  2. To make the background lighter:
+     - Increase the lightness value in --background
+     - Example for lighter: --background: 147 64% 12%;
+  
+  3. To change the shade of green:
+     - Adjust the hue value (first number)
+     - 120-150 is green range (147 is current)
+     - Lower for more yellow-green, higher for more blue-green
+  
+  4. To change intensity:
+     - Adjust the saturation value (middle percentage)
+     - Higher percentage = more vivid color
+  
+  Remember to adjust related colors (--card, --secondary, etc.) to maintain harmony
+*/

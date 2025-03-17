@@ -33,7 +33,7 @@ export default function ContactPage() {
     <main className="min-h-screen bg-background">
       <Navbar />
       <section className="container mx-auto px-4 py-24 md:py-32">
-        <div className="max-w-2xl mx-auto pt-16">
+        <div className="max-w-2xl mx-auto pt-16 md:pt-0">
           <h1 className="text-4xl md:text-5xl font-bold mb-8">Get in Touch</h1>
           <p className="text-lg text-muted-foreground mb-8">
             Have a project in mind or just want to say hello? Fill out the form below or send me an email directly at{" "}
@@ -82,7 +82,7 @@ export default function ContactPage() {
             </Button>
           </form>
 
-          <div className="mt-16 pt-8 border-t">
+          <div className="mt-16 pt-8 border-t border-border">
             <div className="flex items-center text-muted-foreground">
               <Mail className="mr-2 h-5 w-5" />
               <span>

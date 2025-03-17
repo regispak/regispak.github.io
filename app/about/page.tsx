@@ -5,7 +5,7 @@ export default function AboutPage() {
     <main className="min-h-screen bg-background">
       <Navbar />
       <section className="container mx-auto px-4 py-24 md:py-32">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8 pt-16">About Me</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-8 pt-16 md:pt-0">About Me</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-6">
             <p className="text-lg text-muted-foreground">

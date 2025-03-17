@@ -1,11 +1,7 @@
 "use client"
-
-import { useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { ExternalLink, Github } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { useRouter } from "next/navigation"
 
 // Sample project data
 const projects = [
@@ -14,10 +10,9 @@ const projects = [
     title: "E-commerce Platform",
     description:
       "A modern e-commerce platform built with Next.js, featuring product listings, cart functionality, and secure checkout.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/images/RegisFuji.jpg",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe"],
-    liveUrl: "#",
-    githubUrl: "#",
+    slug: "ecommerce-platform",
   },
   {
     id: 2,
@@ -26,8 +21,7 @@ const projects = [
       "A productivity app for managing tasks and projects with drag-and-drop functionality and real-time updates.",
     image: "/placeholder.svg?height=600&width=800",
     tags: ["React", "Firebase", "Tailwind CSS", "Framer Motion"],
-    liveUrl: "#",
-    githubUrl: "#",
+    slug: "task-management-app",
   },
   {
     id: 3,
@@ -35,68 +29,67 @@ const projects = [
     description: "A responsive portfolio website showcasing projects and skills with a modern, minimalist design.",
     image: "/placeholder.svg?height=600&width=800",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    liveUrl: "#",
-    githubUrl: "#",
+    slug: "portfolio-website",
   },
 ]
 
 export default function FeaturedProjects() {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null)
+  const router = useRouter()
+
+  const handleProjectClick = (slug: string) => {
+    // Navigate to the project detail page
+    // Since you renamed the folder to "tacit", we need to use that in the path
+    router.push(`/projects/tacit?project=${slug}`)
+  }
 
   return (
-    <section id="projects" className="py-24 md:py-32">
+    <section id="projects" className="py-24 md:py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Here are some of my recent projects. Each one is built with modern technologies and best practices.
+          <h2 className="text-4xl md:text-5xl font-lato font-bold mb-4">Featured Projects</h2>
+          <p className="text-lg font-raleway text-muted-foreground max-w-2xl mx-auto">
+            Here are my latest projects that I've built using different engines 
+            and practices. Please take a look at what i've made so far, and if you
+            like what you see, you can check out more at my Projects Page. 
           </p>
         </div>
 
-        <div className="flex flex-col gap-8 max-w-4xl mx-auto">
+        <div className="flex flex-col gap-12 max-w-5xl mx-auto">
           {projects.map((project) => (
             <motion.div
               key={project.id}
-              className="group bg-card rounded-lg overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300"
+              className="group bg-card rounded-lg overflow-hidden border border-border shadow-sm hover:shadow-lg cursor-pointer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true, margin: "-100px" }}
-              onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={() => setHoveredProject(null)}
+              onClick={() => handleProjectClick(project.slug)}
+              whileHover={{
+                scale: 1.03,
+                transition: { duration: 0.2, ease: "easeOut" },
+              }}
             >
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="relative h-64 md:h-80 overflow-hidden">
+              <div className="grid md:grid-cols-5 gap-6">
+                <div className="md:col-span-3 relative h-72 md:h-96 overflow-hidden">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
                     fill
-                    className={`object-cover transition-transform duration-500 ${
-                      hoveredProject === project.id ? "scale-110" : "scale-100"
-                    }`}
+                    className="object-cover transition-all duration-200 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                    <Button size="sm" variant="secondary" asChild>
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="mr-2 h-4 w-4" /> Live Demo
-                      </a>
-                    </Button>
-                    <Button size="sm" variant="outline" asChild>
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="mr-2 h-4 w-4" /> Code
-                      </a>
-                    </Button>
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center justify-center">
+                    <span className="text-white text-lg font-medium">View Project</span>
                   </div>
                 </div>
 
-                <div className="p-6 flex flex-col justify-center">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
+                <div className="md:col-span-2 p-6 flex flex-col justify-center">
+                  <h3 className="text-2xl font-semibold mb-3">{project.title}</h3>
+                  <p className="text-muted-foreground mb-4 line-clamp-3">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
+                      <span key={tag} className="bg-secondary px-2 py-1 rounded-md text-xs font-medium">
                         {tag}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
                 </div>
