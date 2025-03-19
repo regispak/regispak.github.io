@@ -122,7 +122,7 @@ export default function Tacit() {
                   <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Pre-Production</h3>
                   <ul className="space-y-4 list-disc pl-5">
                     <p>&emsp;
-                      Since this project is for UCSC's game design capstone course, we want to make something
+                      Task: Create a 20 week project for UCSC's game design capstone course, we want to make something
                       interesting, something fun, but mainly something that I can put right here on my website.
                       Not only is it what you want to make, but what your professors NEED you to make, in the form
                       of requirements.
@@ -169,8 +169,9 @@ export default function Tacit() {
                     <p>
                     &emsp;
                     </p>
-                    <p>4
-                      Some sort of multiplayer party game,  duh :P
+                    <p> &emsp;
+                      With a bucket of sticks stones, we decided on creating a multiplayer
+                      pvp game thats based around typing out your spells. Simple yet complex
                     </p>
                   </ul>
                 </div>
@@ -185,20 +186,28 @@ export default function Tacit() {
 
               {/* Clear Landmarks */}
               <div className="mb-16">
-                <h3 className="text-2xl font-bold text-white mb-8 uppercase">CLEAR LANDMARKS</h3>
+                <h3 className="text-2xl font-bold text-white mb-8 uppercase">SIMPLE GOALS</h3>
                 <div className="flex flex-col md:flex-row gap-8 mb-8">
                   <div className="w-full md:w-1/2 text-white">
                     <ul className="space-y-4 list-disc pl-5">
-                      <li>The level should provide the player with a clear sense of direction and location.</li>
+                      <p>&emsp;
+                        With a simple concept, you can go one of many ways. For us, we started
+                        with the idea of just casting out spells. You press enter, type out a spell,
+                        then enter again and presto, you got your ability. With this, the gameplay
+                        becomes more interactive, but more complex at the same time. As such, it 
+                        brings in a couple of important questions at play.
+                        </p>
                       <li>
-                        I made sure to create clear landmarks and visible pathways to help the players easily navigate
-                        and understand their surroundings within the open field.
+                        How does physically moving your hand to type feel?
+                      </li>
+                      <li>
+                        W
                       </li>
                     </ul>
                   </div>
                   <div className="w-full md:w-1/2">
                     <Image
-                      src="/images/DB.png"
+                      src="/images/tacit/SlideExample.png"
                       alt="Clear Landmarks Screenshot"
                       width={600}
                       height={400}
