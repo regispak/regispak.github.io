@@ -81,11 +81,11 @@ export default function Tacit() {
             <div className="max-w-6xl mx-auto flex flex-wrap justify-between text-white/80 gap-4">
               <div className="w-full md:w-auto">
                 <h3 className="text-[#8FBCBB] text-lg font-medium mb-1">ROLE:</h3>
-                <p>Project Lead</p>
+                <p>Project Lead | Programmer | Designer</p>
               </div>
               <div className="w-full md:w-auto">
                 <h3 className="text-[#8FBCBB] text-lg font-medium mb-1">TEAM SIZE:</h3>
-                <p>12 Students</p>
+                <p>12</p>
               </div>
               <div className="w-full md:w-auto">
                 <h3 className="text-[#8FBCBB] text-lg font-medium mb-1">TOOLS USED:</h3>
@@ -97,7 +97,7 @@ export default function Tacit() {
               </div>
               <div className="w-full md:w-auto">
                 <h3 className="text-[#8FBCBB] text-lg font-medium mb-1">GENRE:</h3>
-                <p>Multiplayer party PVP</p>
+                <p>Multiplayer Party PVP</p>
               </div>
             </div>
           </section>
@@ -105,13 +105,13 @@ export default function Tacit() {
           {/* Design Process Section */}
           <section className="w-full py-16 bg-[#0D1518]/90">
             <div className="max-w-6xl mx-auto px-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#8FBCBB] text-center mb-12">Where to Start?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#8FBCBB] text-center mb-12">Typing-Based Magic Combat Design Process</h2>
 
               {/* Pre-Production */}
               <div className="flex flex-col md:flex-row gap-8 mb-16">
                 <div className="w-full md:w-1/2">
                   <Image
-                    src="/images/tacit/requirements2.png"
+                    src="/images/tacit/SlideExample.png"
                     alt="Pre-Production Concept"
                     width={600}
                     height={400}
@@ -119,59 +119,85 @@ export default function Tacit() {
                   />
                 </div>
                 <div className="w-full md:w-1/2 text-white">
-                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Pre-Production</h3>
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Overview</h3>
                   <ul className="space-y-4 list-disc pl-5">
                     <p>&emsp;
-                      Task: Create a 20 week project for UCSC's game design capstone course, we want to make something
-                      interesting, something fun, but mainly something that I can put right here on my website.
-                      Not only is it what you want to make, but what your professors NEED you to make, in the form
-                      of requirements.
-                    </p>
-                    <p>&emsp;
-                      So, there's a special balance with just that right sweespot in trying to find a game idea
-                      that will not only work, be fun, be impressive, but also pass the class, cause you can't 
-                      leave college without that diploma
+                    Tacit transforms traditional ability combat by replacing button presses with 
+                    real-time typing. This design integrates FPS dynamics with the challenge 
+                    of typing spells, requiring players to balance movement, casting, and evasion: 
+                    here's how we did it
                     </p>
                   </ul>
                 </div>
               </div>
-
-              {/* Initial Floor Plan */}
+              {/* Spell Initiation & Movement */}
               <div className="flex flex-col md:flex-row gap-8 mb-16">
                 <div className="w-full md:w-1/2">
-                  <Image
-                    src="/images/tacit/requirements.png"
-                    alt="Initial Floor Plan"
-                    width={600}
-                    height={400}
-                    className="w-full h-auto object-cover rounded-md"
-                  />
                 </div>
                 <div className="w-full md:w-1/2 text-white">
-                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">So What Do We Do?</h3>
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Spell Initation & Movement</h3>
                   <ul className="space-y-4 list-disc pl-5">
-                    <p>&emsp;
-                      So obviously, you and your friends just spit out random ideas till something sticks. Eventually,
-                      something does. Given these points, can you guess it?
-                    </p>
                     <li>
-                      Relatively fast game cycle, No longer than 15 minutes
+                    <span className="font-bold text-primary">Initiation:</span> Unlike typical button-cast systems, players must actively 
+                    start typing (via left click or enter) to initiate a spell, reflecting 
+                    the idea of wizards chanting while stationary.
                     </li>
                     <li>
-                      Simplistic concept that can be iterated on
-                    </li>
-                    <li>
-                      Mirrors some of the important aspects of AAA games
-                    </li>
-                    <li>
-                      So what do we do?
+                    <span className="font-bold text-primary">Movement Impact:</span> Typing locks the player in place, emphasizing tactical 
+                    positioning and risk management during combat.
                     </li>
                     <p>
-                    &emsp;
+                  &emsp;
+                  </p>
+                  </ul>
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Typing Mechanics & Spell Naming</h3>
+                  <ul className="space-y-4 list-disc pl-5">
+                    <p> 
+                    <span className="font-bold text-primary">Key Layout Considerations:</span>
                     </p>
-                    <p> &emsp;
-                      With a bucket of sticks stones, we decided on creating a multiplayer
-                      pvp game thats based around typing out your spells. Simple yet complex
+                    <li>
+                    Spells like “FIREBALL” span across the keyboard, 
+                    increasing vulnerability due to complex finger movements.
+                    </li>
+                    <li>
+                    Conversely, spells designed for one-hand typing (e.g., “FAST”) 
+                    are quicker and safer, reinforcing the need for thoughtful spell naming.
+                    </li>
+                    <li>
+                    Casting Time: The act of typing simulates charging a shot,
+                     requiring careful balance between spell length, damage, mana 
+                     costs, and abilities
+                    </li>
+                    <p>
+                  &emsp;
+                  </p>
+                  </ul>
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Casting & Balancing</h3>
+                  <ul className="space-y-4 list-disc pl-5">
+                   <li>
+                    <span className="font-bold text-primary">Execution:</span> 
+                    Once typed, spells are cast with a simple action (enter/left click).
+                   </li>
+                   <li>
+                    <span className="font-bold text-primary">Balancing Typing Speed:</span> 
+                    Recognizing the disparity between faster and slower typists, our system 
+                    includes a holding period after typing a spell.
+                   </li>
+                    <li>
+                    This delay allows players to position themselves before releasing 
+                    the spell rewarding precision over speed.
+                    </li>
+                  </ul>
+                  <p>
+                  &emsp;
+                  </p>
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Conclusion</h3>
+                  <ul className="space-y-4 list-disc pl-5">
+                    <p>&emsp;
+                    By merging FPS mechanics with a typing system, we introduced unique 
+                    challenges in spell design and balance. The process required innovative 
+                    approaches to spell initiation, keyboard layout optimization, and 
+                    resource management to create a dynamic, skill-based combat experience.
                     </p>
                   </ul>
                 </div>
@@ -182,86 +208,82 @@ export default function Tacit() {
           {/* Design Choices Section */}
           <section className="w-full py-16">
             <div className="max-w-6xl mx-auto px-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#8FBCBB] text-center mb-12">DESIGN CHOICES</h2>
-
-              {/* Clear Landmarks */}
-              <div className="mb-16">
-                <h3 className="text-2xl font-bold text-white mb-8 uppercase">SIMPLE GOALS</h3>
-                <div className="flex flex-col md:flex-row gap-8 mb-8">
-                  <div className="w-full md:w-1/2 text-white">
-                    <ul className="space-y-4 list-disc pl-5">
-                      <p>&emsp;
-                        With a simple concept, you can go one of many ways. For us, we started
-                        with the idea of just casting out spells. You press enter, type out a spell,
-                        then enter again and presto, you got your ability. With this, the gameplay
-                        becomes more interactive, but more complex at the same time. As such, it 
-                        brings in a couple of important questions at play.
-                        </p>
-                      <li>
-                        How does physically moving your hand to type feel?
-                      </li>
-                      <li>
-                        W
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="w-full md:w-1/2">
-                    <Image
-                      src="/images/tacit/SlideExample.png"
-                      alt="Clear Landmarks Screenshot"
-                      width={600}
-                      height={400}
-                      className="w-full h-auto object-cover rounded-md"
-                    />
-                  </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#8FBCBB] text-center mb-12">Multiplayer Replication</h2>
+                {/* Pre-Production */}
+                  <div className="flex flex-col md:flex-row gap-8 mb-16">
+                <div className="w-full md:w-1/2">
+                  <Image
+                    src="/images/tacit/mutliplayer.png"
+                    alt="Pre-Production Concept"
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover rounded-md"
+                  />
                 </div>
-
-                <div className="flex flex-col md:flex-row gap-8">
-                  <div className="w-full md:w-1/2">
-                    <Image
-                      src="/images/RegisFuji.jpg"
-                      alt="Shrine Screenshot"
-                      width={600}
-                      height={400}
-                      className="w-full h-auto object-cover rounded-md"
-                    />
-                  </div>
-                  <div className="w-full md:w-1/2 text-white">
-                    <ul className="space-y-4 list-disc pl-5">
-                      <li>
-                        The shrine is a well-known landmark in the Zelda game series. I incorporated similar structures
-                        that would be instantly recognized for players.
-                      </li>
-                      <li>
-                        The tall Fire Shrine serves as the first waypoint point; the shrine's location is easily
-                        accessible.
-                      </li>
-                    </ul>
-                  </div>
+                <div className="w-full md:w-1/2 text-white">
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Overview</h3>
+                  <ul className="space-y-4 list-disc pl-5">
+                    <p>&emsp;
+                    Developing a smooth, connected multiplayer experience centers on 
+                    linking players seamlessly. Unreal Engine 5’s built-in replication 
+                    system handled the heavy lifting, but establishing client connections 
+                    still required a robust approach.
+                    </p>
+                  </ul>
                 </div>
               </div>
-
-              {/* Combat Setups */}
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-8 uppercase">COMBAT SETUPS</h3>
-                <div className="flex flex-col md:flex-row gap-8">
-                  <div className="w-full md:w-1/2 text-white">
-                    <ul className="space-y-4 list-disc pl-5">
-                      <li>
-                        To create a rich and exploration-focused style experience, combat encounters are strategically
-                        placed throughout the level.
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="w-full md:w-1/2">
-                    <Image
-                      src="/images/DB.png"
-                      alt="Combat Setup Screenshot"
-                      width={600}
-                      height={400}
-                      className="w-full h-auto object-cover rounded-md"
-                    />
-                  </div>
+              {/* Spell Initiation & Movement */}
+              <div className="flex flex-col md:flex-row gap-8 mb-16">
+                <div className="w-full md:w-1/2">
+                </div>
+                <div className="w-full md:w-1/2 text-white">
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Establishing Connections</h3>
+                  <ul className="space-y-4 list-disc pl-5">
+                    <li>
+                    <span className="font-bold text-primary">Client-Hosted Peer-to-Peer:</span>
+                    With limited resources, we leveraged Steam’s client-hosted peer-to-peer system. 
+                    This approach not only reduced infrastructure costs but also provided 
+                    many benefits of a dedicated server setup.
+                    </li>
+                    <li>
+                    <span className="font-bold text-primary">Action Synchronization:</span> Ensuring every
+                     client’s action is validated without overwhelming the server was a
+                      major design challenge. We meticulously documented each action, 
+                      detailing its interaction with the server and the type of data
+                       transmitted. This clear mapping prevented confusion between host-side
+                        and client-side processes.
+                    </li>
+                    <p>
+                  &emsp;
+                  </p>
+                  </ul>
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Evolving the System with Gameplay Abilities</h3>
+                  <ul className="space-y-4 list-disc pl-5">
+                   <li>
+                    <span className="font-bold text-primary">Adaptation to Hurdles:</span> 
+                    When issues arose with our initial spell-casting mechanics, 
+                    we transitioned to Unreal Engine 5’s Gameplay Ability System.
+                   </li>
+                   <li>
+                    <span className="font-bold text-primary">Built-In Netcode Advantages:</span> 
+                    The system’s integrated rollback netcode and client-side prediction 
+                    significantly enhanced gameplay smoothness, even for high-ping players, 
+                    while streamlining our iteration process.
+                   </li>
+                   <p>
+                  &emsp;
+                  </p>
+                  </ul>
+                  <h3 className="text-xl font-bold text-[#8FBCBB] mb-4">Conclusion</h3>
+                  <ul className="space-y-4 list-disc pl-5">
+                    <p>&emsp;
+                    By combining UE5’s replication framework with Steam’s peer-to-peer 
+                    network and a strategic shift to the Gameplay Ability System, 
+                    we achieved a responsive and efficient multiplayer environment. 
+                    This methodical approach ensured that both connectivity and gameplay 
+                    integrity were maintained throughout development.
+                    </p>
+                  </ul>
                 </div>
               </div>
             </div>
